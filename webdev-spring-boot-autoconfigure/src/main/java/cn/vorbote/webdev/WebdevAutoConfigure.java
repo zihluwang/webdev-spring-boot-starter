@@ -22,14 +22,17 @@ public class WebdevAutoConfigure {
     }
 
     @Bean
-    @ConditionalOnMissingBean
+    @ConditionalOnMissingBean(value = WebdevService.class)
     public WebdevService webdevService() {
+        log.debug("Injecting webdev service...");
+        log.debug("Issuer: {}, Secret: {}", webdevProperties.getIssuer(), webdevProperties.getSecret());
         return new WebdevServiceImpl(webdevProperties.getIssuer(), webdevProperties.getSecret());
     }
 
     @Bean
     @ConditionalOnBean(value = WebdevService.class)
     public AccessKeyUtil accessKeyUtil() {
+        log.debug("Injecting accessKeyUtil...");
         var info = webdevService().configurationInfo();
         return new AccessKeyUtil(info.getSecret(), info.getIssuer());
     }
