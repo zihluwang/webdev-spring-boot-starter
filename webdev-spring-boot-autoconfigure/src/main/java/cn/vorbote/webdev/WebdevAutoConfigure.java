@@ -9,6 +9,11 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * This is the auto configure class.
+ *
+ * @author vorbote thills@vorbote.cn
+ */
 @Configuration
 @EnableConfigurationProperties(value = WebdevProperties.class)
 @Slf4j

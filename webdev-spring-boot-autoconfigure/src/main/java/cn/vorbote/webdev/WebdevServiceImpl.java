@@ -1,22 +1,38 @@
 package cn.vorbote.webdev;
 
+/**
+ * This is the implementation of main service class.
+ *
+ * @author vorbote thills@vorbote.cn
+ */
 public class WebdevServiceImpl implements WebdevService {
 
     /**
-     * 签发人
+     * The issuer of jwt.
      */
-    private String issuer = "";
+    private String issuer;
 
     /**
-     * 密钥
+     * The secret to use in jwt.
      */
-    private String secret = "";
+    private String secret;
 
+    /**
+     * Constructor.
+     *
+     * @param issuer The issuer of jwt.
+     * @param secret The secret to use in jwt.
+     */
     public WebdevServiceImpl(String issuer, String secret) {
         this.issuer = issuer;
         this.secret = secret;
     }
 
+    /**
+     * Build configuration info.
+     *
+     * @return {@link ConfigurationInfo}
+     */
     @Override
     public ConfigurationInfo configurationInfo() {
         return ConfigurationInfo.builder()
