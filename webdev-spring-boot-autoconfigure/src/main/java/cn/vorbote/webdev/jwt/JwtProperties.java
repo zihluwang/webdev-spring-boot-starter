@@ -1,4 +1,4 @@
-package cn.vorbote.webdev;
+package cn.vorbote.webdev.jwt;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -9,8 +9,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author vorbote thills@vorbote.cn
  */
 @Data
-@ConfigurationProperties(prefix = "vorbote.web-dev")
-public class WebdevProperties {
+@ConfigurationProperties(prefix = "vorbote.web-dev.jwt")
+public class JwtProperties {
 
     /**
      * The issuer of jwt.

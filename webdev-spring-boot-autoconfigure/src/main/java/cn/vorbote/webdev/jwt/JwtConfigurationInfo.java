@@ -1,4 +1,4 @@
-package cn.vorbote.webdev;
+package cn.vorbote.webdev.jwt;
 
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Data
 @Builder
-public class ConfigurationInfo implements Serializable {
+public class JwtConfigurationInfo implements Serializable {
 
     /**
      * The issuer of jwt.
@@ -23,5 +23,7 @@ public class ConfigurationInfo implements Serializable {
      * The secret to use in jwt.
      */
     private String secret;
+
+
 
 }

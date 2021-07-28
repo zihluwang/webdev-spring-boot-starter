@@ -1,5 +1,8 @@
 package cn.vorbote.webdev;
 
+import cn.vorbote.webdev.jwt.JwtConfigurationInfo;
+import cn.vorbote.webdev.net.NetConfigurationInfo;
+
 /**
  * This is the main service class.
  *
@@ -7,6 +10,8 @@ package cn.vorbote.webdev;
  */
 public interface WebdevService {
 
-    ConfigurationInfo configurationInfo();
+    JwtConfigurationInfo jwtConfigurationInfo();
+
+    NetConfigurationInfo netConfigurationInfo();
 
 }

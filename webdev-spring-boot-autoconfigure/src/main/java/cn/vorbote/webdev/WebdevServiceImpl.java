@@ -1,5 +1,8 @@
 package cn.vorbote.webdev;
 
+import cn.vorbote.webdev.jwt.JwtConfigurationInfo;
+import cn.vorbote.webdev.net.NetConfigurationInfo;
+
 /**
  * This is the implementation of main service class.
  *
@@ -18,25 +21,55 @@ public class WebdevServiceImpl implements WebdevService {
     private String secret;
 
     /**
+     * The key of the token.
+     */
+    private String tokenKey;
+
+    /**
+     * Headers which are allowed to be used in request header.
+     */
+    private String allowedHeaders;
+
+    /**
+     * Headers which are allowed to be used in request header.
+     */
+    private String exposedHeaders;
+
+    /**
      * Constructor.
      *
      * @param issuer The issuer of jwt.
      * @param secret The secret to use in jwt.
      */
-    public WebdevServiceImpl(String issuer, String secret) {
+    public WebdevServiceImpl(String issuer,
+                             String secret,
+                             String tokenKey,
+                             String allowedHeaders,
+                             String exposedHeaders) {
         this.issuer = issuer;
         this.secret = secret;
+        this.tokenKey = tokenKey;
+        this.allowedHeaders = allowedHeaders;
+        this.exposedHeaders = exposedHeaders;
     }
 
     /**
      * Build configuration info.
      *
-     * @return {@link ConfigurationInfo}
+     * @return {@link cn.vorbote.webdev.jwt.JwtConfigurationInfo}
      */
     @Override
-    public ConfigurationInfo configurationInfo() {
-        return ConfigurationInfo.builder()
+    public JwtConfigurationInfo jwtConfigurationInfo() {
+        return JwtConfigurationInfo.builder()
                 .issuer(this.issuer)
                 .secret(this.secret).build();
+    }
+
+    @Override
+    public NetConfigurationInfo netConfigurationInfo() {
+        return NetConfigurationInfo.builder().
+                tokenKey(this.tokenKey)
+                .allowedHeaders(this.allowedHeaders)
+                .exposedHeaders(this.exposedHeaders).build();
     }
 }

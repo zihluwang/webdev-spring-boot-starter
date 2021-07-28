@@ -12,7 +12,7 @@
 
     <groupId>cn.vorbote</groupId>
     <artifactId>webdev-spring-boot-autoconfigure</artifactId>
-    <version>1.0.1.RELEASE</version>
+    <version>1.2.0.RELEASE</version>
     <url>https://plugins.vorbote.cn/</url>
 
     <name>VorBotE :: Web Dev Suite :: Spring Boot Auto Configurator</name>
