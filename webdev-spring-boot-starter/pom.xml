@@ -10,9 +10,15 @@
         <version>7</version>
     </parent>
 
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.version>1.0.1.RELEASE</project.version>
+    </properties>
+
     <groupId>cn.vorbote</groupId>
     <artifactId>webdev-spring-boot-starter</artifactId>
-    <version>1.0.0.RELEASE</version>
+    <version>${project.version}</version>
     <url>https://plugins.vorbote.cn/</url>
 
     <name>VorBotE :: Web Dev Suite :: Spring Boot Starter</name>
@@ -27,12 +33,6 @@
     </developers>
 
     <packaging>jar</packaging>
-
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.version>1.0.0.RELEASE</project.version>
-    </properties>
 
     <dependencies>
         <dependency>
