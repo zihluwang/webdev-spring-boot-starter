@@ -64,15 +64,15 @@ public class CommonFilter implements Filter {
     private final String exposedHeaders;
 
     /**
-     * 构造函数，提示已经加载跨域过滤器
+     * This constructor will auto inject {@code WebdevService.class} into this filter.
      */
     public CommonFilter(WebdevService webdevService) {
-        log.info("通用请求过滤器已加载...");
+        log.info("Common Request filter loaded...");
         var netConf = webdevService.netConfigurationInfo();
         this.allowedHeaders = netConf.getAllowedHeaders();
         this.exposedHeaders = netConf.getExposedHeaders();
 
-        log.info("允许发送的请求头：「{}」，暴露出来的请求头：「{}」", allowedHeaders, exposedHeaders);
+        log.info("Allowed request headers:[{}]，exposed headers:[{}]", allowedHeaders, exposedHeaders);
     }
 
     @Override
@@ -80,22 +80,21 @@ public class CommonFilter implements Filter {
             throws IOException, ServletException {
         HttpServletResponse resp = (HttpServletResponse) response;
 
-        // 处理跨域问题
+        // Handle CORS Request
         resp.addHeader("Access-Control-Allow-Credentials", "true");
         resp.addHeader("Access-Control-Allow-Origin", "*");
         resp.addHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT,PATCH");
         resp.addHeader("Access-Control-Allow-Headers", allowedHeaders);
 
-        // 设置暴露的请求头
+        // Set the header to expose
         resp.addHeader("Access-Control-Expose-Headers", exposedHeaders);
 
-        log.info("Request: {}", ((HttpServletRequest) request).getMethod());
-
-        // 所有xhr发送的请求会同时发送OPTIONS请求，因此拦截所有OPTIONS请求
+        // All request sent by xhr will send OPTIONS Request at the same time, thus
+        // intercept all OPTIONS requests.
         if (((HttpServletRequest) request).getMethod().equalsIgnoreCase("OPTIONS")) {
             return;
         }
-        // 其余的请求放行
+        // Let other requests go forward.
         chain.doFilter(request, response);
     }
 }
