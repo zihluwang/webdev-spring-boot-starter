@@ -56,7 +56,7 @@ public class WebdevServiceImpl implements WebdevService {
     }
 
     /**
-     * Build configuration info.
+     * Build JWT configuration info.
      *
      * @return {@link cn.vorbote.webdev.jwt.JwtConfigurationInfo}
      */
@@ -67,6 +67,11 @@ public class WebdevServiceImpl implements WebdevService {
                 .secret(this.secret).build();
     }
 
+    /**
+     * Build configuration info.
+     *
+     * @return {@link cn.vorbote.webdev.jwt.JwtConfigurationInfo}
+     */
     @Override
     public NetConfigurationInfo netConfigurationInfo() {
         return NetConfigurationInfo.builder().

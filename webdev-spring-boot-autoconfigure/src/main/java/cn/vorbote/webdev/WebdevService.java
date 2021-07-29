@@ -10,8 +10,18 @@ import cn.vorbote.webdev.net.NetConfigurationInfo;
  */
 public interface WebdevService {
 
+    /**
+     * Build JWT configuration info.
+     *
+     * @return {@link cn.vorbote.webdev.jwt.JwtConfigurationInfo}
+     */
     JwtConfigurationInfo jwtConfigurationInfo();
 
+    /**
+     * Build NET configuration info.
+     *
+     * @return {@link cn.vorbote.webdev.net.NetConfigurationInfo}
+     */
     NetConfigurationInfo netConfigurationInfo();
 
 }
