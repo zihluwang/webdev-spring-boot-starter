@@ -1,13 +1,13 @@
 # Web Dev Suite
 
-A useful Web development suite, integrated with jwt, and request header resolving.
+一套十分有用的网络开发套件，集成了JWT以及请求头解析器。
 
-## User Guide
+## 用户指南
 
-If you want to use this suite, please make sure that you know about the usage of 
-the following configurations.
+如果您向使用好这个套件，请务必确保您了解如下配置项目。
 
-> This is the integration of simple-jwt, you can use this with the following codes.
+以下是JWT的配置，此套件的JWT实现采用**maven**中的`cn.vorbote:simple-jwt:1.0.2`。
+通过将如下的代码添加到`pom.xml`文件中的`dependencies`节点中即可使用`simple-jwt`
 
 ```xml
 <dependency>
@@ -17,11 +17,12 @@ the following configurations.
 </dependency>
 ```
 
+配置项目介绍：
 - `vorbote.web-dev.jwt`
-  - `issuer`: This configuration is to specify the issuer of **Jwt Token**.
-  - `secret`: This is to specify the secret in the **Verify Signature**
+  - `issuer`: 这个配置将会指定**JWT令牌的签发者**。
+  - `secret`: 这个配置将会指定**令牌的验证签名**。
   
-For example, while you write the following codes in `application.yml`:
+例如，您可以将如下代码添加到`springboot`项目的配置`application.yml`中
 ```yml
 vorbote:
   web-dev:
@@ -29,22 +30,23 @@ vorbote:
       issuer: Example Issuer
       secret: exampleSecret
 ```
-After this, the specified issuer is `Example Issuer` and the secret of jwt is `exampleSecret`.
+这将会指定JWT组件的签发者为`Example Issuer`，将JWT的签名密钥设置为`exampleSecret`。
 
-Then I wrote down these code as a demo: ![Demo1](https://dist.cq.vorbote.cn/image/png/Qv7Md6-1627578986.png)
-The demo run out the result in the picture: ![Demo2](https://dist.cq.vorbote.cn/image/png/UY5R26-1627579413.png)
-The token is `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJERU1PIFVTRVIiLCJzdWIiOiJERU1PIEFQUCIsIm5iZiI6MTYyNzU3OTM5OCwiaXNzIjoiRXhhbXBsZSBJc3N1ZXIiLCJleHAiOjE2Mjc1ODExOTgsImlhdCI6MTYyNzU3OTM5OCwianRpIjoiMjVmOWU5M2UtOGIzNy00NjI1LTgyOWItZDllZDZmNWE1M2M4In0.eKtIQOqX5QXqG5u6-ubmywJhpOhaSbGym5-949v1yrzCTeqrJSHR0VQi97PLZDT6fxILphT_dTnTRR2fWdZECQ`,
-and you can also paste it into the [jwt.io](https://jwt.io) to resolve the JWT token. Here is the result:
+您可以参考如下的Demo ![Demo1](https://dist.cq.vorbote.cn/image/png/Qv7Md6-1627578986.png)
+这个Demo的运行结果如下 ![Demo2](https://dist.cq.vorbote.cn/image/png/UY5R26-1627579413.png)
+令牌是`eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJERU1PIFVTRVIiLCJzdWIiOiJERU1PIEFQUCIsIm5iZiI6MTYyNzU3OTM5OCwiaXNzIjoiRXhhbXBsZSBJc3N1ZXIiLCJleHAiOjE2Mjc1ODExOTgsImlhdCI6MTYyNzU3OTM5OCwianRpIjoiMjVmOWU5M2UtOGIzNy00NjI1LTgyOWItZDllZDZmNWE1M2M4In0.eKtIQOqX5QXqG5u6-ubmywJhpOhaSbGym5-949v1yrzCTeqrJSHR0VQi97PLZDT6fxILphT_dTnTRR2fWdZECQ`,
+并且您可以将其粘贴到 [jwt.io](https://jwt.io) 来解析这个Token令牌。
+如下是解析结果：
 ![Result](https://dist.cq.vorbote.cn/image/png/2grGRR-1627579482.png)
 
-As for the configuration for net, its configuration's meanings is as followed:
+至于`net`部分的配置项目，它的配置的含义如下：
 
 - `vorbote.web-dev.net`
-  - `token-key`: The key of your token in the **Request Header**.
-  - `allowed-headers`: The keys to allow the front end to send in **Request Header**.
-  - `exposed-headers`: The headers to expose in **Response Header**.
+  - `token-key`: 指定**Request Header**中的的验证头的Key。
+  - `allowed-headers`: 指定哪些请求头可以被放置在**Request Header**中发送。
+  - `exposed-headers`: 指定哪些响应头能被暴露在**Response Header**中。
   
-You need to add these configurations in your `cors filter`. And here is a sample:
+这些配置项需要您手动添加到您的**跨域过滤器**中。以下就是一个跨域过滤器的*SAMPLE*
 ```java
 import cn.vorbote.webdev.WebdevService;
 import lombok.extern.slf4j.Slf4j;

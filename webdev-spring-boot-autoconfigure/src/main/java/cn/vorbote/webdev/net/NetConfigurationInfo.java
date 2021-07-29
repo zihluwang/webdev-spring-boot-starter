@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * This is the configuration info class.
@@ -22,10 +23,40 @@ public class NetConfigurationInfo implements Serializable {
     /**
      * Headers which are allowed to be used in request header.
      */
-    private String allowedHeaders;
+    private List<String> allowedHeaders;
 
     /**
      * Headers which are allowed to be used in request header.
      */
-    private String exposedHeaders;
+    private List<String> exposedHeaders;
+
+    public String AllowedHeadersToString() {
+        StringBuilder builder = new StringBuilder();
+
+        final var iter = allowedHeaders.iterator();
+        for (String allowedHeader : allowedHeaders) {
+            iter.next();
+            builder.append(allowedHeader);
+            if (iter.hasNext()) {
+                builder.append(",");
+            }
+        }
+
+        return builder.toString();
+    }
+
+    public String ExposedHeadersToString() {
+        StringBuilder builder = new StringBuilder();
+
+        final var iter = allowedHeaders.iterator();
+        for (String allowedHeader : allowedHeaders) {
+            iter.next();
+            builder.append(allowedHeader);
+            if (iter.hasNext()) {
+                builder.append(",");
+            }
+        }
+
+        return builder.toString();
+    }
 }

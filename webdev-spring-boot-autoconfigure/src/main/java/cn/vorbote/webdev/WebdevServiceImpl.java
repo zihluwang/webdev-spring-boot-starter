@@ -3,6 +3,8 @@ package cn.vorbote.webdev;
 import cn.vorbote.webdev.jwt.JwtConfigurationInfo;
 import cn.vorbote.webdev.net.NetConfigurationInfo;
 
+import java.util.List;
+
 /**
  * This is the implementation of main service class.
  *
@@ -28,12 +30,12 @@ public class WebdevServiceImpl implements WebdevService {
     /**
      * Headers which are allowed to be used in request header.
      */
-    private String allowedHeaders;
+    private List<String> allowedHeaders;
 
     /**
      * Headers which are allowed to be used in request header.
      */
-    private String exposedHeaders;
+    private List<String> exposedHeaders;
 
     /**
      * Constructor.
@@ -44,8 +46,8 @@ public class WebdevServiceImpl implements WebdevService {
     public WebdevServiceImpl(String issuer,
                              String secret,
                              String tokenKey,
-                             String allowedHeaders,
-                             String exposedHeaders) {
+                             List<String> allowedHeaders,
+                             List<String> exposedHeaders) {
         this.issuer = issuer;
         this.secret = secret;
         this.tokenKey = tokenKey;

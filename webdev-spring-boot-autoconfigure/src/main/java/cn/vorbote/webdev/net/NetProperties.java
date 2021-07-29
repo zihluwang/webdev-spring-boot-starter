@@ -3,6 +3,9 @@ package cn.vorbote.webdev.net;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * This is the configuration info properties class.
  *
@@ -20,11 +23,10 @@ public class NetProperties {
     /**
      * Headers which are allowed to be used in request header.
      */
-    private String allowedHeaders;
+    private List<String> allowedHeaders;
 
     /**
      * Headers which are allowed to be used in request header.
      */
-    private String exposedHeaders;
-
+    private List<String> exposedHeaders;
 }
