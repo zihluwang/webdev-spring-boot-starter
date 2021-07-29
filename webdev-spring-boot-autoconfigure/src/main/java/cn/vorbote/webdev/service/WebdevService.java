@@ -1,4 +1,4 @@
-package cn.vorbote.webdev;
+package cn.vorbote.webdev.service;
 
 import cn.vorbote.webdev.jwt.JwtConfigurationInfo;
 import cn.vorbote.webdev.net.NetConfigurationInfo;
