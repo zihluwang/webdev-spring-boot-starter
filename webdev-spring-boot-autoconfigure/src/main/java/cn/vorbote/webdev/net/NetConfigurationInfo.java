@@ -30,14 +30,29 @@ public class NetConfigurationInfo implements Serializable {
      */
     private List<String> exposedHeaders;
 
+    /**
+     * Get Allowed Headers in String
+     *
+     * @return A string includes all allowed headers.
+     */
     public String AllowedHeaders() {
         return getString(allowedHeaders);
     }
 
+    /**
+     * Get Exposed Headers in String
+     *
+     * @return A string includes all exposed headers.
+     */
     public String ExposedHeaders() {
         return getString(exposedHeaders);
     }
 
+    /**
+     * Transfer lists in this instance to String.
+     *
+     * @return A string includes all headers.
+     */
     private String getString(List<String> headers) {
         var builder = new StringBuilder();
 
