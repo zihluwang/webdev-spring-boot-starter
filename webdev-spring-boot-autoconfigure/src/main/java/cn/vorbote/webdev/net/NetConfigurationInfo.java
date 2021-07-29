@@ -30,28 +30,21 @@ public class NetConfigurationInfo implements Serializable {
      */
     private List<String> exposedHeaders;
 
-    public String AllowedHeadersToString() {
-        StringBuilder builder = new StringBuilder();
-
-        final var iter = allowedHeaders.iterator();
-        for (String allowedHeader : allowedHeaders) {
-            iter.next();
-            builder.append(allowedHeader);
-            if (iter.hasNext()) {
-                builder.append(",");
-            }
-        }
-
-        return builder.toString();
+    public String AllowedHeaders() {
+        return getString(allowedHeaders);
     }
 
-    public String ExposedHeadersToString() {
-        StringBuilder builder = new StringBuilder();
+    public String ExposedHeaders() {
+        return getString(exposedHeaders);
+    }
 
-        final var iter = allowedHeaders.iterator();
-        for (String allowedHeader : allowedHeaders) {
+    private String getString(List<String> headers) {
+        var builder = new StringBuilder();
+
+        final var iter = headers.iterator();
+        for (String exposedHeader : headers) {
             iter.next();
-            builder.append(allowedHeader);
+            builder.append(exposedHeader);
             if (iter.hasNext()) {
                 builder.append(",");
             }
