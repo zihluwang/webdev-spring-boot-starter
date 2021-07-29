@@ -13,7 +13,7 @@ the following configurations.
 <dependency>
     <groupId>cn.vorbote</groupId>
     <artifactId>simple-jwt</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
