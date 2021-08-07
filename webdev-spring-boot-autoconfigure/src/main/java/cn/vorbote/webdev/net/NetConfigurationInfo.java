@@ -36,7 +36,7 @@ public class NetConfigurationInfo implements Serializable {
      * @return A string includes all allowed headers.
      */
     public String AllowedHeaders() {
-        return getString(allowedHeaders);
+        return toString(allowedHeaders);
     }
 
     /**
@@ -45,7 +45,7 @@ public class NetConfigurationInfo implements Serializable {
      * @return A string includes all exposed headers.
      */
     public String ExposedHeaders() {
-        return getString(exposedHeaders);
+        return toString(exposedHeaders);
     }
 
     /**
@@ -53,14 +53,13 @@ public class NetConfigurationInfo implements Serializable {
      *
      * @return A string includes all headers.
      */
-    private String getString(List<String> headers) {
+    private String toString(List<String> headers) {
         var builder = new StringBuilder();
 
-        final var iter = headers.iterator();
-        for (String exposedHeader : headers) {
-            iter.next();
-            builder.append(exposedHeader);
-            if (iter.hasNext()) {
+        final var iterator = headers.iterator();
+        while(iterator.hasNext()) {
+            builder.append(iterator.next());
+            if (iterator.hasNext()) {
                 builder.append(",");
             }
         }
