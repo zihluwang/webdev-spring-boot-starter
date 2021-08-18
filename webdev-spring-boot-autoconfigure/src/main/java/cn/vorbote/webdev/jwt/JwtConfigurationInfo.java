@@ -1,5 +1,6 @@
 package cn.vorbote.webdev.jwt;
 
+import cn.vorbote.commons.enums.JwtAlgorithm;
 import lombok.Builder;
 import lombok.Data;
 
@@ -23,6 +24,11 @@ public class JwtConfigurationInfo implements Serializable {
      * The secret to use in jwt.
      */
     private String secret;
+
+    /**
+     * The algorithm of jwt
+     */
+    private JwtAlgorithm algorithm;
 
 
 

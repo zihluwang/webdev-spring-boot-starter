@@ -1,5 +1,6 @@
 package cn.vorbote.webdev.service.impl;
 
+import cn.vorbote.commons.enums.JwtAlgorithm;
 import cn.vorbote.webdev.jwt.JwtConfigurationInfo;
 import cn.vorbote.webdev.net.NetConfigurationInfo;
 import cn.vorbote.webdev.service.WebdevService;
@@ -24,6 +25,11 @@ public class WebdevServiceImpl implements WebdevService {
     private String secret;
 
     /**
+     * The algorithm of jwt
+     */
+    private JwtAlgorithm algorithm;
+
+    /**
      * The key of the token.
      */
     private String tokenKey;
@@ -46,11 +52,13 @@ public class WebdevServiceImpl implements WebdevService {
      */
     public WebdevServiceImpl(String issuer,
                              String secret,
+                             JwtAlgorithm algorithm,
                              String tokenKey,
                              List<String> allowedHeaders,
                              List<String> exposedHeaders) {
         this.issuer = issuer;
         this.secret = secret;
+        this.algorithm = algorithm;
         this.tokenKey = tokenKey;
         this.allowedHeaders = allowedHeaders;
         this.exposedHeaders = exposedHeaders;
@@ -65,7 +73,8 @@ public class WebdevServiceImpl implements WebdevService {
     public JwtConfigurationInfo jwtConfigurationInfo() {
         return JwtConfigurationInfo.builder()
                 .issuer(this.issuer)
-                .secret(this.secret).build();
+                .secret(this.secret)
+                .algorithm(this.algorithm).build();
     }
 
     /**

@@ -1,5 +1,6 @@
 package cn.vorbote.webdev.jwt;
 
+import cn.vorbote.commons.enums.JwtAlgorithm;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -21,5 +22,10 @@ public class JwtProperties {
      * The secret to use in jwt.
      */
     private String secret;
+
+    /**
+     * The algorithm of jwt
+     */
+    private JwtAlgorithm algorithm;
 
 }

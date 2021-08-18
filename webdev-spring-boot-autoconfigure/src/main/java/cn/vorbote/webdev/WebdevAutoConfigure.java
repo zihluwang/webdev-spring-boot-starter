@@ -38,9 +38,13 @@ public class WebdevAutoConfigure {
     public WebdevService webdevService() {
         log.debug("Injecting webdev service...");
         log.debug("Issuer: {}, Secret: {}", jwtProperties.getIssuer(), jwtProperties.getSecret());
-        return new WebdevServiceImpl(jwtProperties.getIssuer(),
-                jwtProperties.getSecret(), netProperties.getTokenKey(),
-                netProperties.getAllowedHeaders(), netProperties.getExposedHeaders());
+        return new WebdevServiceImpl(
+                jwtProperties.getIssuer(),
+                jwtProperties.getSecret(),
+                jwtProperties.getAlgorithm(),
+                netProperties.getTokenKey(),
+                netProperties.getAllowedHeaders(),
+                netProperties.getExposedHeaders());
     }
 
     @Bean
@@ -48,6 +52,6 @@ public class WebdevAutoConfigure {
     public AccessKeyUtil accessKeyUtil() {
         log.debug("Injecting accessKeyUtil...");
         var info = webdevService().jwtConfigurationInfo();
-        return new AccessKeyUtil(info.getSecret(), info.getIssuer());
+        return new AccessKeyUtil(info.getAlgorithm(), info.getSecret(), info.getIssuer());
     }
 }
