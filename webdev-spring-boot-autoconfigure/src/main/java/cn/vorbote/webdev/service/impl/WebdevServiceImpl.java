@@ -1,6 +1,6 @@
 package cn.vorbote.webdev.service.impl;
 
-import cn.vorbote.commons.enums.JwtAlgorithm;
+import cn.vorbote.simplejwt.choices.JwtAlgorithm;
 import cn.vorbote.webdev.jwt.JwtConfigurationInfo;
 import cn.vorbote.webdev.net.NetConfigurationInfo;
 import cn.vorbote.webdev.service.WebdevService;
@@ -17,32 +17,32 @@ public class WebdevServiceImpl implements WebdevService {
     /**
      * The issuer of jwt.
      */
-    private String issuer;
+    private final String issuer;
 
     /**
      * The secret to use in jwt.
      */
-    private String secret;
+    private final String secret;
 
     /**
      * The algorithm of jwt
      */
-    private JwtAlgorithm algorithm;
+    private final JwtAlgorithm algorithm;
 
     /**
      * The key of the token.
      */
-    private String tokenKey;
+    private final String tokenKey;
 
     /**
      * Headers which are allowed to be used in request header.
      */
-    private List<String> allowedHeaders;
+    private final List<String> allowedHeaders;
 
     /**
      * Headers which are allowed to be used in request header.
      */
-    private List<String> exposedHeaders;
+    private final List<String> exposedHeaders;
 
     /**
      * Constructor.

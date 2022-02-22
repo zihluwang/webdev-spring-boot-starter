@@ -1,6 +1,7 @@
 package cn.vorbote.webdev;
 
 import cn.vorbote.simplejwt.AccessKeyUtil;
+import cn.vorbote.simplejwt.choices.JwtAlgorithm;
 import cn.vorbote.webdev.jwt.JwtProperties;
 import cn.vorbote.webdev.net.NetProperties;
 import cn.vorbote.webdev.service.WebdevService;
@@ -52,6 +53,10 @@ public class WebdevAutoConfigure {
     public AccessKeyUtil accessKeyUtil() {
         log.debug("Injecting accessKeyUtil...");
         var info = webdevService().jwtConfigurationInfo();
-        return new AccessKeyUtil(info.getAlgorithm(), info.getSecret(), info.getIssuer());
+        var algorithm = info.getAlgorithm();
+        if (algorithm == null) {
+            algorithm = JwtAlgorithm.HS256;
+        }
+        return new AccessKeyUtil(algorithm, info.getSecret(), info.getIssuer());
     }
 }

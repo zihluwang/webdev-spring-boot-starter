@@ -1,6 +1,6 @@
 package cn.vorbote.webdev.jwt;
 
-import cn.vorbote.commons.enums.JwtAlgorithm;
+import cn.vorbote.simplejwt.choices.JwtAlgorithm;
 import lombok.Builder;
 import lombok.Data;
 
