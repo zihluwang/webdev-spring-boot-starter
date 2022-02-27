@@ -1,11 +1,9 @@
 package cn.vorbote.webdev.service.impl;
 
 import cn.vorbote.simplejwt.choices.JwtAlgorithm;
+import cn.vorbote.webdev.cors.CorsConfigurationInfo;
 import cn.vorbote.webdev.jwt.JwtConfigurationInfo;
-import cn.vorbote.webdev.net.NetConfigurationInfo;
 import cn.vorbote.webdev.service.WebdevService;
-
-import java.util.List;
 
 /**
  * This is the implementation of main service class.
@@ -30,19 +28,42 @@ public class WebdevServiceImpl implements WebdevService {
     private final JwtAlgorithm algorithm;
 
     /**
-     * The key of the token.
+     * According to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials"
+     * >MDN Docs</a>, this tells browsers whether to expose the response to the frontend JavaScript code when
+     * the request's credentials mode ({@code Request.credentials}) is included.
      */
-    private final String tokenKey;
+    private final boolean allowCredentials;
 
     /**
-     * Headers which are allowed to be used in request header.
+     * According to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin"
+     * >MDN Docs</a>, this response header indicates whether the response can be shared with requesting code from the
+     * given origin.
      */
-    private final List<String> allowedHeaders;
+    private final String[] allowOrigin;
 
     /**
-     * Headers which are allowed to be used in request header.
+     * According to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers"
+     * >MDN Docs</a>, this response header is used in response to a preflight request which includes the
+     * {@code Access-Control-Request-Headers} to indicate which HTTP headers can be used during the actual request.
      */
-    private final List<String> exposedHeaders;
+    private final String[] allowHeaders;
+
+    /**
+     * According to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods"
+     * >MDN Docs</a>, this response header specifies one or more methods allowed when accessing a resource in response
+     * to a preflight request.
+     */
+    private final String[] allowMethods;
+
+    /**
+     * According to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers"
+     * >MDN Docs</a>, this response header allows a server to indicate which response headers should be made available
+     * to scripts running in the browser, in response to a cross-origin request.<br/>
+     * Only the <a href="https://developer.mozilla.org/en-US/docs/Glossary/CORS-safelisted_response_header"
+     * >CORS-safelisted</a> response headers are exposed by default. For clients to be able to access other headers,
+     * the server must list them using the Access-Control-Expose-Headers header.
+     */
+    private final String[] exposeHeaders;
 
     /**
      * Constructor.
@@ -53,21 +74,25 @@ public class WebdevServiceImpl implements WebdevService {
     public WebdevServiceImpl(String issuer,
                              String secret,
                              JwtAlgorithm algorithm,
-                             String tokenKey,
-                             List<String> allowedHeaders,
-                             List<String> exposedHeaders) {
+                             boolean allowCredentials,
+                             String[] allowOrigin,
+                             String[] allowHeaders,
+                             String[] allowMethods,
+                             String[] exposeHeaders) {
         this.issuer = issuer;
         this.secret = secret;
         this.algorithm = algorithm;
-        this.tokenKey = tokenKey;
-        this.allowedHeaders = allowedHeaders;
-        this.exposedHeaders = exposedHeaders;
+        this.allowCredentials = allowCredentials;
+        this.allowOrigin = allowOrigin;
+        this.allowHeaders = allowHeaders;
+        this.allowMethods = allowMethods;
+        this.exposeHeaders = exposeHeaders;
     }
 
     /**
      * Build JWT configuration info.
      *
-     * @return {@link cn.vorbote.webdev.jwt.JwtConfigurationInfo}
+     * @return {@link JwtConfigurationInfo}
      */
     @Override
     public JwtConfigurationInfo jwtConfigurationInfo() {
@@ -77,16 +102,13 @@ public class WebdevServiceImpl implements WebdevService {
                 .algorithm(this.algorithm).build();
     }
 
-    /**
-     * Build configuration info.
-     *
-     * @return {@link cn.vorbote.webdev.jwt.JwtConfigurationInfo}
-     */
     @Override
-    public NetConfigurationInfo netConfigurationInfo() {
-        return NetConfigurationInfo.builder().
-                tokenKey(this.tokenKey)
-                .allowedHeaders(this.allowedHeaders)
-                .exposedHeaders(this.exposedHeaders).build();
+    public CorsConfigurationInfo corsConfigurationInfo() {
+        return CorsConfigurationInfo.builder()
+                .allowCredentials(this.allowCredentials)
+                .allowOrigin(this.allowOrigin)
+                .allowMethods(this.allowMethods)
+                .allowHeaders(this.allowHeaders)
+                .exposeHeaders(this.exposeHeaders).build();
     }
 }

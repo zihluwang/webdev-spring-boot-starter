@@ -1,7 +1,7 @@
 package cn.vorbote.webdev.service;
 
+import cn.vorbote.webdev.cors.CorsConfigurationInfo;
 import cn.vorbote.webdev.jwt.JwtConfigurationInfo;
-import cn.vorbote.webdev.net.NetConfigurationInfo;
 
 /**
  * This is the main service class.
@@ -13,15 +13,15 @@ public interface WebdevService {
     /**
      * Build JWT configuration info.
      *
-     * @return {@link cn.vorbote.webdev.jwt.JwtConfigurationInfo}
+     * @return {@link JwtConfigurationInfo} instance.
      */
     JwtConfigurationInfo jwtConfigurationInfo();
 
     /**
-     * Build NET configuration info.
+     * Build {@code CORS} configuration info.
      *
-     * @return {@link cn.vorbote.webdev.net.NetConfigurationInfo}
+     * @return {@link CorsConfigurationInfo} instance.
      */
-    NetConfigurationInfo netConfigurationInfo();
+    CorsConfigurationInfo corsConfigurationInfo();
 
 }
