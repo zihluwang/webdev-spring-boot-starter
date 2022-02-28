@@ -34,7 +34,7 @@ public class WebdevAutoConfigure {
     }
 
     @Bean
-    @ConditionalOnBean(value = AccessKeyUtil.class)
+    @ConditionalOnProperty(name = "vorbote.web-dev.jwt.enabled", havingValue = "true")
     public AccessKeyUtil accessKeyUtil() {
         log.debug("Injecting accessKeyUtil...");
         var info = this.jwtProperties;
