@@ -1,4 +1,4 @@
-## Open Source Core
+## Web Dev SpringBoot Starter
 
 开发者在这些年的开发经验中，发现有不少使用 `SpringBoot` 的 `Web Application` 项目会自行配置跨域请求处理器，所以在此次项目中，我们将 CORS
 过滤器进行了封装，让其能在经过配置后自动注入 `SpringBoot` 容器内，以加快各位开发者的开发进程。
