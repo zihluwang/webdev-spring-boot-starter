@@ -67,9 +67,6 @@ public class WebdevServiceImpl implements WebdevService {
 
     /**
      * Constructor.
-     *
-     * @param issuer The issuer of jwt.
-     * @param secret The secret to use in jwt.
      */
     public WebdevServiceImpl(String issuer,
                              String secret,
@@ -81,7 +78,7 @@ public class WebdevServiceImpl implements WebdevService {
                              String[] exposeHeaders) {
         this.issuer = issuer;
         this.secret = secret;
-        this.algorithm = algorithm;
+        this.algorithm = algorithm != null ? algorithm : JwtAlgorithm.HS256;
         this.allowCredentials = allowCredentials;
         this.allowOrigin = allowOrigin;
         this.allowHeaders = allowHeaders;
