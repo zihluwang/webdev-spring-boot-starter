@@ -31,7 +31,7 @@ vorbote.web-dev.cors.allow-credentials=[true|false]
 vorbote.web-dev.cors.allow-origin=[allowed origins (array of strings)]
 # See MDN Docs (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers) for 
 # specification
-vorbote.web-dev.cors.allow-headers=[allow headers (string number)]
+vorbote.web-dev.cors.allow-headers=[allow headers (string array)]
 # See MDN Docs (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods) for 
 # specification
 vorbote.web-dev.cors.allow-methods=[allowed request methods (array of strings)]

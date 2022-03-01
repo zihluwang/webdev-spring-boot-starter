@@ -24,7 +24,7 @@ vorbote.web-dev.cors.allow-credentials=[true|false]
 # 请参阅 MDN Docs (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) 进行指定
 vorbote.web-dev.cors.allow-origin=[允许的来源（字符串数组）]
 # 请参阅 MDN Docs (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers) 进行指定
-vorbote.web-dev.cors.allow-headers=[允许的请求头（字符串数字）]
+vorbote.web-dev.cors.allow-headers=[允许的请求头（字符串数组）]
 # 请参阅 MDN Docs (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods) 进行指定
 vorbote.web-dev.cors.allow-methods=[允许的请求方式（字符串数组）]
 # 请参阅 MDN Docs (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers) 进行指定
