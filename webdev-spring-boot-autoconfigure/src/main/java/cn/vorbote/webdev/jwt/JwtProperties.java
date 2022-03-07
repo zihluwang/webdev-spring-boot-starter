@@ -14,6 +14,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class JwtProperties {
 
     /**
+     * Open the JWT Util by set this to {@code true}.
+     */
+    private Boolean enabled;
+
+    /**
      * The issuer of jwt.
      */
     private String issuer;

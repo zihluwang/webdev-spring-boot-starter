@@ -16,6 +16,11 @@ import java.io.Serializable;
 public class JwtConfigurationInfo implements Serializable {
 
     /**
+     * Open the JWT Util by set this to {@code true}.
+     */
+    private final boolean enabled;
+
+    /**
      * The issuer of jwt.
      */
     private String issuer;

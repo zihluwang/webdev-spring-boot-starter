@@ -48,7 +48,8 @@ public class WebdevAutoConfigure {
     @Bean
     @ConditionalOnProperty(name = "vorbote.web-dev.cors.enabled", havingValue = "true")
     public CorsFilter corsFilter() {
-        return new CorsFilter(corsProperties.isAllowCredentials(), corsProperties.getAllowOrigin(),
+        log.debug("Injecting CORS Filter...");
+        return new CorsFilter(corsProperties.getAllowCredentials(), corsProperties.getAllowOrigin(),
                 corsProperties.getAllowMethods(), corsProperties.getAllowMethods(), corsProperties.getExposeHeaders());
     }
 }

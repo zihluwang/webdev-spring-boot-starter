@@ -13,6 +13,16 @@ import cn.vorbote.webdev.service.WebdevService;
 public class WebdevServiceImpl implements WebdevService {
 
     /**
+     * Open the JWT Util by set this to {@code true}.
+     */
+    private final boolean jwtEnabled;
+
+    /**
+     * Open the JWT Util by set this to {@code true}.
+     */
+    private final boolean corsEnabled;
+
+    /**
      * The issuer of jwt.
      */
     private final String issuer;
@@ -58,7 +68,7 @@ public class WebdevServiceImpl implements WebdevService {
     /**
      * According to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers"
      * >MDN Docs</a>, this response header allows a server to indicate which response headers should be made available
-     * to scripts running in the browser, in response to a cross-origin request.<br/>
+     * to scripts running in the browser, in response to a cross-origin request.<br>
      * Only the <a href="https://developer.mozilla.org/en-US/docs/Glossary/CORS-safelisted_response_header"
      * >CORS-safelisted</a> response headers are exposed by default. For clients to be able to access other headers,
      * the server must list them using the Access-Control-Expose-Headers header.
@@ -68,17 +78,21 @@ public class WebdevServiceImpl implements WebdevService {
     /**
      * Constructor.
      */
-    public WebdevServiceImpl(String issuer,
+    public WebdevServiceImpl(boolean jwtEnabled,
+                             String issuer,
                              String secret,
                              JwtAlgorithm algorithm,
+                             boolean corsEnabled,
                              boolean allowCredentials,
                              String[] allowOrigin,
                              String[] allowHeaders,
                              String[] allowMethods,
                              String[] exposeHeaders) {
+        this.jwtEnabled = jwtEnabled;
         this.issuer = issuer;
         this.secret = secret;
         this.algorithm = algorithm != null ? algorithm : JwtAlgorithm.HS256;
+        this.corsEnabled = corsEnabled;
         this.allowCredentials = allowCredentials;
         this.allowOrigin = allowOrigin;
         this.allowHeaders = allowHeaders;
@@ -94,6 +108,7 @@ public class WebdevServiceImpl implements WebdevService {
     @Override
     public JwtConfigurationInfo jwtConfigurationInfo() {
         return JwtConfigurationInfo.builder()
+                .enabled(jwtEnabled)
                 .issuer(this.issuer)
                 .secret(this.secret)
                 .algorithm(this.algorithm).build();
@@ -102,6 +117,7 @@ public class WebdevServiceImpl implements WebdevService {
     @Override
     public CorsConfigurationInfo corsConfigurationInfo() {
         return CorsConfigurationInfo.builder()
+                .enabled(corsEnabled)
                 .allowCredentials(this.allowCredentials)
                 .allowOrigin(this.allowOrigin)
                 .allowMethods(this.allowMethods)
