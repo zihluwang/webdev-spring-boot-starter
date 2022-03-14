@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * This is the auto configure class.
+ * This is to autoconfigure.
  *
  * @author vorbote thills@vorbote.cn
  */
@@ -49,7 +49,11 @@ public class WebdevAutoConfigure {
     @ConditionalOnProperty(name = "vorbote.web-dev.cors.enabled", havingValue = "true")
     public CorsFilter corsFilter() {
         log.debug("Injecting CORS Filter...");
+        if (corsProperties.getAllowCredentials() == null) {
+            log.warn("Allow-credentials had been set to null, will set to false by default.");
+            corsProperties.setAllowCredentials(false);
+        }
         return new CorsFilter(corsProperties.getAllowCredentials(), corsProperties.getAllowOrigin(),
-                corsProperties.getAllowMethods(), corsProperties.getAllowMethods(), corsProperties.getExposeHeaders());
+                corsProperties.getAllowMethods(), corsProperties.getAllowHeaders(), corsProperties.getExposeHeaders());
     }
 }

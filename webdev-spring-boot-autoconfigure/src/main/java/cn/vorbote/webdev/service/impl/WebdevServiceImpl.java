@@ -77,6 +77,17 @@ public class WebdevServiceImpl implements WebdevService {
 
     /**
      * Constructor.
+     *
+     * @param jwtEnabled       Specify whether to use jwt or not.
+     * @param issuer           The issuer of the {@code JSON Web Token}.
+     * @param secret           The secret of the {@code JSON Web Token}.
+     * @param algorithm        The algorithm of the {@code JSON Web Token}.
+     * @param corsEnabled      Specify whether to use cors or not.
+     * @param allowCredentials See MDN Docs.
+     * @param allowOrigin      See MDN Docs.
+     * @param allowHeaders     See MDN Docs.
+     * @param allowMethods     See MDN Docs.
+     * @param exposeHeaders    See MDN Docs.
      */
     public WebdevServiceImpl(boolean jwtEnabled,
                              String issuer,
