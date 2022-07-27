@@ -1,5 +1,9 @@
 ## Web Dev SpringBoot Starter
 
+本项目由 **JetBrains** 赞助
+
+[![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png)](https://www.jetbrains.com/community/opensource/?utm_campaign=opensource&utm_content=approved&utm_medium=email&utm_source=newsletter&utm_term=jblogo#support)
+
 开发者在这些年的开发经验中，发现有不少使用 `SpringBoot` 的 `Web Application` 项目会自行配置跨域请求处理器，所以在此次项目中，我们将 CORS
 过滤器进行了封装，让其能在经过配置后自动注入 `SpringBoot` 容器内，以加快各位开发者的开发进程。
 
@@ -30,7 +34,3 @@ vorbote.web-dev.cors.allow-methods=[允许的请求方式（字符串数组）]
 # 请参阅 MDN Docs (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers) 进行指定
 vorbote.web-dev.cors.expose-headers=[需要进行暴露的响应头（字符串数字）]
 ```
-
-> 该库现在处于 **_ALPHA_** 测试中，如果您想帮助我们测试，您可以克隆此库并使用 **maven** 或 **gradle** 将其构建到您的本地存储库。如果您在
-> 使用过程中发现任何错误或有任何疑问，请随时通过提交 **Issues** 与我们描述你遇到的情况。如果你有能力修复或自行改进，我们也欢迎您的 
-> **Pull Request**。
