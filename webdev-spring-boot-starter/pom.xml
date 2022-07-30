@@ -32,8 +32,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
-
-        <project.version>3.4.0</project.version>
     </properties>
 
     <parent>
@@ -44,7 +42,7 @@
 
     <groupId>cn.vorbote</groupId>
     <artifactId>webdev-spring-boot-starter</artifactId>
-    <version>${project.version}</version>
+    <version>3.4.0</version>
     <url>https://plugins.vorbote.cn/</url>
 
     <name>VorBotE :: Web Dev Suite :: Spring Boot Starter</name>
