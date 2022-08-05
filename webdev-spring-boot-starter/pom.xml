@@ -42,7 +42,7 @@
 
     <groupId>cn.vorbote</groupId>
     <artifactId>webdev-spring-boot-starter</artifactId>
-    <version>3.4.0</version>
+    <version>3.4.1</version>
     <url>https://plugins.vorbote.cn/</url>
 
     <name>VorBotE :: Web Dev Suite :: Spring Boot Starter</name>
